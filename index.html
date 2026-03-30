@@ -1,99 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>teasdale-brown.com</title>
-  <meta name="description" content="teasdale-brown.com landing page placeholder" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teasdale Brown</title>
+  <meta name="description" content="Welcome to our family site.">
   <style>
-    :root{
-      --bg:#0f172a;
-      --panel:rgba(255,255,255,0.08);
-      --text:#f8fafc;
-      --muted:#cbd5e1;
-      --line:rgba(255,255,255,0.14);
-      --accent:#94a3b8;
+    * { box-sizing: border-box; }
+
+    :root {
+      --bg-deep: #0d1522;
+      --bg-mid: #182233;
+      --bg-soft: #223047;
+      --panel: rgba(17, 24, 37, 0.78);
+      --panel-strong: rgba(20, 29, 44, 0.92);
+      --line: rgba(176, 138, 82, 0.28);
+      --line-strong: rgba(212, 178, 122, 0.46);
+      --gold: #b08a52;
+      --gold-soft: #d4b27a;
+      --ivory: #efe7da;
+      --muted: #b9b1a4;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.42);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color:var(--text);
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ivory);
+      min-height: 100vh;
       background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.12), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(255,255,255,0.08), transparent 25%),
-        linear-gradient(135deg, #111827 0%, #0f172a 45%, #1e293b 100%);
-      display:grid;
-      place-items:center;
-      padding:24px;
+        radial-gradient(circle at top left, rgba(212,178,122,0.07), transparent 26%),
+        radial-gradient(circle at 85% 12%, rgba(88,114,156,0.18), transparent 20%),
+        radial-gradient(circle at bottom center, rgba(212,178,122,0.05), transparent 28%),
+        linear-gradient(180deg, var(--bg-soft) 0%, var(--bg-mid) 38%, var(--bg-deep) 100%);
+      overflow-x: hidden;
     }
-    .card{
-      width:min(760px, 100%);
-      padding:40px 32px;
-      border:1px solid var(--line);
-      border-radius:24px;
-      background:var(--panel);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-      text-align:center;
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: radial-gradient(circle at center, black 44%, transparent 92%);
+      -webkit-mask-image: radial-gradient(circle at center, black 44%, transparent 92%);
     }
-    .eyebrow{
-      display:inline-block;
-      padding:8px 14px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:var(--muted);
-      margin-bottom:22px;
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 40px 0 50px;
     }
-    h1{
-      margin:0 0 12px;
-      font-size:clamp(2rem, 5vw, 4rem);
-      line-height:1.05;
-      letter-spacing:-0.03em;
+
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), transparent 30%),
+        var(--panel);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      padding: 42px 32px 34px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    p{
-      margin:0 auto;
-      max-width:42rem;
-      font-size:clamp(1rem, 2vw, 1.15rem);
-      line-height:1.65;
-      color:var(--muted);
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(212,178,122,0.12), transparent 28%),
+        radial-gradient(circle at 15% 85%, rgba(255,255,255,0.03), transparent 20%),
+        radial-gradient(circle at 85% 20%, rgba(255,255,255,0.03), transparent 24%);
     }
-    .divider{
-      width:84px;
-      height:1px;
-      background:var(--accent);
-      margin:28px auto 22px;
-      opacity:.65;
+
+    .welcome {
+      margin: 0;
+      color: var(--gold-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 12px;
     }
-    .footer{
-      margin-top:26px;
-      font-size:.92rem;
-      color:var(--muted);
-      opacity:.9;
+
+    .intro {
+      max-width: 760px;
+      margin: 18px auto 0;
+      font-size: clamp(18px, 2.1vw, 24px);
+      line-height: 1.7;
+      color: var(--muted);
     }
-    code{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size:.95em;
-      color:#e2e8f0;
+
+    .crest-wrap {
+      margin: 34px auto 26px;
+      width: min(100%, 560px);
+      padding: 22px;
+      border-radius: 28px;
+      border: 1px solid rgba(212,178,122,0.2);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        rgba(8, 13, 22, 0.32);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .crest-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 26px rgba(0,0,0,0.28));
+    }
+
+    .signature {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 15px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .card {
+      position: relative;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), transparent 36%),
+        var(--panel-strong);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--line-strong);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .card-iron::before {
+      background:
+        radial-gradient(circle at 18% 18%, rgba(176,138,82,0.16), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,0.02), transparent 44%);
+    }
+
+    .card-photos::before {
+      background:
+        radial-gradient(circle at 82% 18%, rgba(107,137,178,0.17), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,0.02), transparent 44%);
+    }
+
+    .card-top,
+    .card-bottom {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-label {
+      margin: 0 0 14px;
+      color: var(--gold-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.02;
+      font-weight: 500;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .card-url {
+      color: var(--gold-soft);
+      font-size: 14px;
+      line-height: 1.6;
+      word-break: break-word;
+    }
+
+    .arrow {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--gold-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex: 0 0 auto;
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(16, 22, 34, 0.66);
+      box-shadow: var(--shadow);
+      text-align: center;
+      color: var(--muted);
+      padding: 18px 20px;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 860px) {
+      .links {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 18px, 1180px);
+        padding-top: 18px;
+      }
+
+      .hero {
+        border-radius: 24px;
+        padding: 28px 18px 24px;
+      }
+
+      .crest-wrap {
+        padding: 14px;
+        border-radius: 20px;
+      }
+
+      .card {
+        min-height: 245px;
+        border-radius: 22px;
+        padding: 22px;
+      }
+
+      .card p {
+        font-size: 17px;
+      }
+
+      .card-bottom {
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="card">
-    <div class="eyebrow">Coming Soon</div>
-    <h1>teasdale-brown.com</h1>
-    <p>
-      This domain is active and a new website is being prepared.
-      Please check back soon for updates.
-    </p>
-    <div class="divider"></div>
-    <p class="footer">
-      Placeholder landing page for <code>teasdale-brown.com</code>
-    </p>
+  <main class="page">
+    <section class="hero">
+      <p class="welcome">Welcome to our family site</p>
+
+      <div class="crest-wrap">
+        <img src="images/teasdale-brown.png" alt="Teasdale Brown family emblem">
+      </div>
+
+      <p class="intro">
+        A private landing point for selected work, shared photographs,
+        and future projects connected to the family.
+      </p>
+
+      <div class="signature">Teasdale Brown</div>
+    </section>
+
+    <section class="links">
+      <a class="card card-iron" href="https://ironwoodco.teasdale-brown.com/">
+        <div class="card-top">
+          <p class="card-label">Craft & design</p>
+          <h2>Iron Wood Co.</h2>
+          <p>
+            Bespoke furniture, lighting and handcrafted pieces presented
+            through the workshop-led studio site.
+          </p>
+        </div>
+        <div class="card-bottom">
+          <div class="card-url">ironwoodco.teasdale-brown.com</div>
+          <div class="arrow">→</div>
+        </div>
+      </a>
+
+      <a class="card card-photos" href="https://publicphotos.teasdale-brown.com/">
+        <div class="card-top">
+          <p class="card-label">Shared gallery</p>
+          <h2>Public Photos</h2>
+          <p>
+            A rotating selection of photographs for easy sharing without
+            exposing the full library.
+          </p>
+        </div>
+        <div class="card-bottom">
+          <div class="card-url">publicphotos.teasdale-brown.com</div>
+          <div class="arrow">→</div>
+        </div>
+      </a>
+    </section>
+
+    <div class="footer-note">
+      This main page acts as a quiet entry point, while each subdomain remains free to develop its own style and purpose.
+    </div>
   </main>
 </body>
 </html>
