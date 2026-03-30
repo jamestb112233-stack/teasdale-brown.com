@@ -9,17 +9,18 @@
     * { box-sizing: border-box; }
 
     :root {
-      --bg-deep: #0d1522;
-      --bg-mid: #182233;
+      --bg-deep: #0c1420;
+      --bg-mid: #172131;
       --bg-soft: #223047;
-      --panel: rgba(17, 24, 37, 0.78);
-      --panel-strong: rgba(20, 29, 44, 0.92);
-      --line: rgba(176, 138, 82, 0.28);
-      --line-strong: rgba(212, 178, 122, 0.46);
+      --panel: rgba(17, 24, 37, 0.84);
+      --panel-strong: rgba(19, 28, 42, 0.95);
+      --line: rgba(176, 138, 82, 0.30);
+      --line-strong: rgba(212, 178, 122, 0.50);
       --gold: #b08a52;
-      --gold-soft: #d4b27a;
+      --gold-soft: #d9bc88;
+      --gold-faint: rgba(217, 188, 136, 0.18);
       --ivory: #efe7da;
-      --muted: #b9b1a4;
+      --muted: #c0b7a8;
       --shadow: 0 18px 50px rgba(0, 0, 0, 0.42);
     }
 
@@ -30,8 +31,8 @@
       min-height: 100vh;
       background:
         radial-gradient(circle at top left, rgba(212,178,122,0.07), transparent 26%),
-        radial-gradient(circle at 85% 12%, rgba(88,114,156,0.18), transparent 20%),
-        radial-gradient(circle at bottom center, rgba(212,178,122,0.05), transparent 28%),
+        radial-gradient(circle at 85% 12%, rgba(107,137,178,0.16), transparent 20%),
+        radial-gradient(circle at bottom center, rgba(212,178,122,0.04), transparent 28%),
         linear-gradient(180deg, var(--bg-soft) 0%, var(--bg-mid) 38%, var(--bg-deep) 100%);
       overflow-x: hidden;
     }
@@ -41,7 +42,7 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.12;
+      opacity: 0.08;
       background-image:
         linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
@@ -51,62 +52,168 @@
     }
 
     .page {
-      width: min(1180px, calc(100% - 32px));
+      width: min(1120px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 40px 0 50px;
+      padding: 28px 0 38px;
     }
 
     .hero {
+      position: relative;
       border: 1px solid var(--line);
-      border-radius: 34px;
+      border-radius: 10px;
       background:
         linear-gradient(180deg, rgba(255,255,255,0.02), transparent 30%),
         var(--panel);
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(12px);
       box-shadow: var(--shadow);
-      padding: 42px 32px 34px;
+      padding: 28px 26px 24px;
       text-align: center;
-      position: relative;
       overflow: hidden;
     }
 
     .hero::before {
       content: "";
       position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(212,178,122,0.12);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
       inset: 0;
       pointer-events: none;
       background:
-        radial-gradient(circle at 50% 0%, rgba(212,178,122,0.12), transparent 28%),
-        radial-gradient(circle at 15% 85%, rgba(255,255,255,0.03), transparent 20%),
-        radial-gradient(circle at 85% 20%, rgba(255,255,255,0.03), transparent 24%);
+        radial-gradient(circle at 50% 0%, rgba(212,178,122,0.10), transparent 26%),
+        linear-gradient(180deg, rgba(255,255,255,0.015), transparent 40%);
+    }
+
+    .corner {
+      position: absolute;
+      width: 72px;
+      height: 72px;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .corner::before,
+    .corner::after {
+      content: "";
+      position: absolute;
+      border-color: var(--gold-faint);
+      border-style: solid;
+    }
+
+    .corner-tl {
+      top: 14px;
+      left: 14px;
+    }
+
+    .corner-tl::before {
+      top: 0;
+      left: 0;
+      width: 34px;
+      height: 34px;
+      border-width: 1px 0 0 1px;
+    }
+
+    .corner-tl::after {
+      top: 10px;
+      left: 10px;
+      width: 12px;
+      height: 12px;
+      border-width: 1px 0 0 1px;
+      transform: rotate(45deg);
+    }
+
+    .corner-tr {
+      top: 14px;
+      right: 14px;
+    }
+
+    .corner-tr::before {
+      top: 0;
+      right: 0;
+      width: 34px;
+      height: 34px;
+      border-width: 1px 1px 0 0;
+    }
+
+    .corner-tr::after {
+      top: 10px;
+      right: 10px;
+      width: 12px;
+      height: 12px;
+      border-width: 1px 1px 0 0;
+      transform: rotate(45deg);
+    }
+
+    .corner-bl {
+      bottom: 14px;
+      left: 14px;
+    }
+
+    .corner-bl::before {
+      bottom: 0;
+      left: 0;
+      width: 34px;
+      height: 34px;
+      border-width: 0 0 1px 1px;
+    }
+
+    .corner-bl::after {
+      bottom: 10px;
+      left: 10px;
+      width: 12px;
+      height: 12px;
+      border-width: 0 0 1px 1px;
+      transform: rotate(45deg);
+    }
+
+    .corner-br {
+      bottom: 14px;
+      right: 14px;
+    }
+
+    .corner-br::before {
+      bottom: 0;
+      right: 0;
+      width: 34px;
+      height: 34px;
+      border-width: 0 1px 1px 0;
+    }
+
+    .corner-br::after {
+      bottom: 10px;
+      right: 10px;
+      width: 12px;
+      height: 12px;
+      border-width: 0 1px 1px 0;
+      transform: rotate(45deg);
     }
 
     .welcome {
       margin: 0;
       color: var(--gold-soft);
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 12px;
-    }
-
-    .intro {
-      max-width: 760px;
-      margin: 18px auto 0;
-      font-size: clamp(18px, 2.1vw, 24px);
-      line-height: 1.7;
-      color: var(--muted);
+      letter-spacing: 0.22em;
+      font-size: 15px;
+      line-height: 1.4;
+      position: relative;
+      z-index: 1;
     }
 
     .crest-wrap {
-      margin: 34px auto 26px;
-      width: min(100%, 560px);
-      padding: 22px;
-      border-radius: 28px;
-      border: 1px solid rgba(212,178,122,0.2);
+      margin: 20px auto 18px;
+      width: min(100%, 360px);
+      padding: 10px;
+      border: 1px solid rgba(212,178,122,0.18);
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
-        rgba(8, 13, 22, 0.32);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)),
+        rgba(8, 13, 22, 0.20);
+      position: relative;
+      z-index: 1;
     }
 
     .crest-wrap img {
@@ -114,27 +221,38 @@
       width: 100%;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 16px 26px rgba(0,0,0,0.28));
+      filter: drop-shadow(0 12px 20px rgba(0,0,0,0.24));
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: clamp(17px, 1.9vw, 22px);
+      line-height: 1.65;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
     }
 
     .signature {
-      margin-top: 16px;
+      margin-top: 14px;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 13px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
+      position: relative;
+      z-index: 1;
     }
 
     .links {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-      margin-top: 30px;
+      gap: 22px;
+      margin-top: 24px;
     }
 
     .card {
       position: relative;
-      border-radius: 28px;
       border: 1px solid var(--line);
       background:
         linear-gradient(180deg, rgba(255,255,255,0.02), transparent 36%),
@@ -143,37 +261,39 @@
       text-decoration: none;
       color: inherit;
       overflow: hidden;
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-      min-height: 280px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      min-height: 250px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 28px;
+      padding: 26px;
+      border-radius: 3px;
     }
 
     .card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-3px);
       border-color: var(--line-strong);
     }
 
     .card::before {
       content: "";
       position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(212,178,122,0.10);
+      pointer-events: none;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: 0.8;
-    }
-
-    .card-iron::before {
+      opacity: 0.55;
       background:
-        radial-gradient(circle at 18% 18%, rgba(176,138,82,0.16), transparent 28%),
-        linear-gradient(135deg, rgba(255,255,255,0.02), transparent 44%);
-    }
-
-    .card-photos::before {
-      background:
-        radial-gradient(circle at 82% 18%, rgba(107,137,178,0.17), transparent 28%),
-        linear-gradient(135deg, rgba(255,255,255,0.02), transparent 44%);
+        radial-gradient(circle at 6% 8%, rgba(212,178,122,0.14), transparent 12%),
+        radial-gradient(circle at 94% 8%, rgba(212,178,122,0.14), transparent 12%),
+        radial-gradient(circle at 6% 92%, rgba(212,178,122,0.10), transparent 12%),
+        radial-gradient(circle at 94% 92%, rgba(212,178,122,0.10), transparent 12%);
     }
 
     .card-top,
@@ -192,7 +312,7 @@
 
     .card h2 {
       margin: 0 0 14px;
-      font-size: clamp(30px, 4vw, 44px);
+      font-size: clamp(28px, 3.5vw, 40px);
       line-height: 1.02;
       font-weight: 500;
     }
@@ -201,7 +321,7 @@
       margin: 0;
       color: var(--muted);
       font-size: 18px;
-      line-height: 1.65;
+      line-height: 1.6;
     }
 
     .card-bottom {
@@ -220,30 +340,16 @@
     }
 
     .arrow {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
+      width: 52px;
+      height: 52px;
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.03);
       color: var(--gold-soft);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 22px;
       flex: 0 0 auto;
-    }
-
-    .footer-note {
-      margin-top: 24px;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: rgba(16, 22, 34, 0.66);
-      box-shadow: var(--shadow);
-      text-align: center;
-      color: var(--muted);
-      padding: 18px 20px;
-      font-size: 15px;
-      line-height: 1.7;
     }
 
     @media (max-width: 860px) {
@@ -254,23 +360,25 @@
 
     @media (max-width: 640px) {
       .page {
-        width: min(100% - 18px, 1180px);
-        padding-top: 18px;
+        width: min(100% - 18px, 1120px);
+        padding-top: 16px;
       }
 
       .hero {
-        border-radius: 24px;
-        padding: 28px 18px 24px;
+        padding: 20px 16px 18px;
+      }
+
+      .welcome {
+        font-size: 13px;
       }
 
       .crest-wrap {
-        padding: 14px;
-        border-radius: 20px;
+        width: min(100%, 290px);
+        margin-top: 16px;
       }
 
       .card {
-        min-height: 245px;
-        border-radius: 22px;
+        min-height: 230px;
         padding: 22px;
       }
 
@@ -281,12 +389,22 @@
       .card-bottom {
         align-items: center;
       }
+
+      .corner {
+        width: 54px;
+        height: 54px;
+      }
     }
   </style>
 </head>
 <body>
   <main class="page">
     <section class="hero">
+      <div class="corner corner-tl"></div>
+      <div class="corner corner-tr"></div>
+      <div class="corner corner-bl"></div>
+      <div class="corner corner-br"></div>
+
       <p class="welcome">Welcome to our family site</p>
 
       <div class="crest-wrap">
@@ -302,7 +420,7 @@
     </section>
 
     <section class="links">
-      <a class="card card-iron" href="https://ironwoodco.teasdale-brown.com/">
+      <a class="card" href="https://ironwoodco.teasdale-brown.com/">
         <div class="card-top">
           <p class="card-label">Craft & design</p>
           <h2>Iron Wood Co.</h2>
@@ -317,7 +435,7 @@
         </div>
       </a>
 
-      <a class="card card-photos" href="https://publicphotos.teasdale-brown.com/">
+      <a class="card" href="https://publicphotos.teasdale-brown.com/">
         <div class="card-top">
           <p class="card-label">Shared gallery</p>
           <h2>Public Photos</h2>
@@ -332,10 +450,6 @@
         </div>
       </a>
     </section>
-
-    <div class="footer-note">
-      This main page acts as a quiet entry point, while each subdomain remains free to develop its own style and purpose.
-    </div>
   </main>
 </body>
 </html>
